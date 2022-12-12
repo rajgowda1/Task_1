@@ -1,38 +1,112 @@
-.App {
-  text-align: center;
+html{
+    min-height: 100%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+    background: linear-gradient(45deg, #6fdaec , #e40a9b);
+    /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% ); */
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-group{
+    color: aliceblue;
+    
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.containerOuter{
+   
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; text-align: center;
 }
-
-.App-link {
-  color: #61dafb;
+.image{
+    border-radius: 50%;
+    width: 250px;
+    
 }
+#form-log{
+    place-items: center center;
+    
+}
+.formDiv{ 
+    
+    margin-top: 100px;;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+#navbarScrollingDropdown{
+    color: white;
+
+}
+.authContainer{
+    
+ margin: auto;
+  width: 50%;
+  
+  padding: 10px;
+margin-top: 7%;}
+.authSetting{
+        /* color: #00DBDE; */
+    background-image: linear-gradient(90deg, #00DBDE 0%, #182099 100%);
+ 
+}
+#textLogo{
+    font-family: 'GRUNGE', sans-serif;
+                                                
+    font-size:25px;
+    color: #f736b7;
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    width: 45px;
+                                                
+}
+.table{
+    padding : 0px;
+    border : 2px solid white;
+    margin-top : 0%;
+}
+.paginationInput{
+    margin: 30px;
+    margin-top: 59px;
+}
+#form_log{
+    margin-top: 5%;
+    
+}
+#listForm{
+    
+    width: 35%;
+    margin: 2px;
+    color: rgb(36, 35, 42);
+    font-size: 16px;
+    line-height: 20px;
+    min-height: 28px;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+    background: rgb(251, 251, 251);
+    transition: all 0.1s ease 0s;
+    }
+#listFormCheck
+{margin-top: 13px;
+   
+    gap: 2em;
+        
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 1.15em solid currentColor;
+  border-radius: 1em;
+  
+      }
+      #select{
+        width: 8%;
+      }
+      .deleteContainer{
+        height: auto;
+        display: flex;
+        justify-content: center; 
+        align-items: center; text-align: center;
+      }
+.cards{
+    margin:auto;
+    
 }
