@@ -8,6 +8,8 @@ import UpdateProduct from './UpdateProduct';
 import DeleteProduct from './DeleteProduct';
 import UpdateImages from './UpdateImages';
 import Carousel from 'react-bootstrap/Carousel';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 
 export default function Product() {
@@ -60,11 +62,13 @@ export default function Product() {
         const handleCloseUpdateImage=()=>{setShowUpdateImages(false)}
         const handleShowUpdateImage=()=>{setShowUpdateImages(true)}
     
-
+const toastex=()=>{
+  toast.success("hello")
+}
 
   return (
 
-<>
+<><div><Toaster/></div>
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>UPDATE PRODUCT</Modal.Title>
@@ -141,6 +145,9 @@ export default function Product() {
       <Button variant="primary" onClick={handleShowDelete} >DELETE PRODUCT</Button>
       {"   "}
       <Button variant="primary" onClick={handleShowUpdateImage} >UPDATE IMAGES</Button>
+
+      <Button variant="primary" onClick={toastex} >UPDATE IMAGES</Button>
+
     </Card.Body>
   </Card></div>
 </>  )

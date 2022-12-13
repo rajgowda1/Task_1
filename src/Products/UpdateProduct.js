@@ -27,22 +27,26 @@ export default function UpdateProduct(pid) {
   return (
    
     <div>
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100' id='form-log'>
       <div className="form-control">
-        <label>Name</label>
+        <label>NAME</label>
         <input
           type="text"
           name="name"
+          className="form-control"
+          placeholder='name'
           {...register("name", {
             required: true
           })}
         />
       </div>
       <div className="form-control">
-        <label>Description</label>
+        <label>DESCRIPTION</label>
         <input
           type="text"
           name="description"
+          className="form-control"
+          placeholder='description'
           {...register("description", {
             required: true
           })
@@ -50,10 +54,12 @@ export default function UpdateProduct(pid) {
         />
       </div>
       <div className="form-control">
-        <label>Price</label>
+        <label>PRICE</label>
         <input
           type="number"
           name="price"
+          placeholder='price'
+          className="form-control"
           {...register("price", {
             required: true
           })}
@@ -62,7 +68,7 @@ export default function UpdateProduct(pid) {
 
       <div className="form-control">
         <label></label>
-        <button type="submit">Login</button>
+        <button className='btn btn-dark btn-lg btn-block mt-3 mb-3' type='submit'>UPDATE</button>
       </div>
     </form>
   </div>

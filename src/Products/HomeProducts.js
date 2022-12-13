@@ -62,17 +62,17 @@ function HomeProducts() {
        
       </Modal>
 
-<Navbar bg="light" expand="lg">
+<Navbar bg="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home"  id="navbarScrollingDropdown">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={Addproducts} >Add Products</Nav.Link>
+            <Nav.Link onClick={Addproducts}  id="navbarScrollingDropdown" >ADD PRODUCTS</Nav.Link>
 
-            <Nav.Link href="/my-profile">back</Nav.Link>
+            <Nav.Link href="/my-profile" id="navbarScrollingDropdown">🏠HOME</Nav.Link>
 
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item  href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -82,7 +82,7 @@ function HomeProducts() {
               <NavDropdown.Item href="#action/3.4">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -29,7 +29,7 @@ deleteFun(url)
   return (
     <div className="align-items-center justify-content-center"> 
         <h4>ARE YOU SURE</h4>
-        <button onClick={del}>DELETE</button>
+        <button className='btn btn-dark btn-lg btn-block mt-3 mb-3'  onClick={del}>DELETE</button>
         </div>
   )
 }
