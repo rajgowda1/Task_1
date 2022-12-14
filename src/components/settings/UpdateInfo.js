@@ -7,6 +7,7 @@ import {Link ,useNavigate} from "react-router-dom"
 import axios from 'axios'
 import { securePatch } from '../../services/HTTPservices';
 import NavigationBar from '../NavigationBar';
+import { toast ,Toaster } from 'react-hot-toast'
 
 function UpdateInfo() {
 
@@ -25,10 +26,12 @@ function UpdateInfo() {
     // )
     .then((response) => {
         console.log(response);
+        toast.success("UPDATED SUCCESSFULLY")
         navigate("/my-profile")
     })
     .catch((error) => {
         console.log(error);
+        toast.error(error.response.data.message)
     })
 
     

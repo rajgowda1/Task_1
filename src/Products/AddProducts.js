@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import {useForm} from 'react-hook-form'
 import { getToken } from '../services/TokenServices';
+import { toast ,Toaster } from 'react-hot-toast'
 // import axios from 'axios';
 function AddProducts() {
 
@@ -46,10 +47,12 @@ console.log("before");
         )
         .then((res)=>{
             console.log(res);
+            toast.success("PRODUCT ADDED SUCCESSFULLY")
             window.location.reload(); 
         })
         .catch((err)=>{
             console.log(err);
+            toast.error(err.response.data.message)
         })
 
 
@@ -57,6 +60,7 @@ console.log("before");
 
   return (
     <div>
+        <div><Toaster/></div>
  <form  onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100' id='form-log' >
         
 
@@ -114,7 +118,8 @@ console.log("before");
             
 
         </form>
-
+    
+    
     </div>
   )
 }

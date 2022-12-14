@@ -7,6 +7,7 @@ import {Link ,useNavigate} from "react-router-dom"
 import axios from 'axios'
 import { securePatch } from '../../services/HTTPservices';
 import NavigationBar from '../NavigationBar';
+import { toast ,Toaster } from 'react-hot-toast'
 
 function UpdateUserRole(userData) {
 
@@ -22,20 +23,23 @@ function UpdateUserRole(userData) {
       console.log(uid)
       console.log(data);
       console.log(userInfoUrl)
+     
     securePatch(userInfoUrl,data)
       .then((response) => {
       console.log(response);
+      toast.success("UPDATED USER ROLE")
       window.location.reload();
      
   }).catch((error) => {
       console.log(error);
+      toast.error(error.response.data.message)
   })
   
   }
 
   return (
     <div >
- 
+ <div><Toaster/></div>
          <form  onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100 mt-1 ' id='form-log' >
           
 

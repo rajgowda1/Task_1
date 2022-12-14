@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form'
 import{useState , useEffect} from 'react'
 import { useNavigate , Link } from 'react-router-dom';
 import { post } from '../services/HTTPservices';
-
+import { toast ,Toaster } from 'react-hot-toast';
 import axios from 'axios'
 
 
@@ -27,11 +27,13 @@ const onSubmit=(data)=>{
         console.log(response);
         // console.log(response.data.token)
         // // const res=response.data.token;
+        toast.success("REGISTRATION SUCCESSFUL")
         (response.data.token && navigate("/auth/login"))
         
 
     },(error)=>{
         console.log(error);
+        toast.error(error.response.data.message)
     }
     )
     
@@ -48,7 +50,7 @@ const onSubmit=(data)=>{
 }
     return (
     <div >
-
+<div><Toaster/></div>
 
         <form  onSubmit={handleSubmit(onSubmit)}  className='text-center d-grid h-100 mt-5 ' id="form-log">
             <h1 className='text-light'>REGISTER</h1>

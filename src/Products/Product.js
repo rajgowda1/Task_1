@@ -12,11 +12,14 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 
+
 export default function Product() {
 
 
     
     const [productData,setProductData]=useState()
+
+    
 
     const [searchParams] = useSearchParams();
 
@@ -44,7 +47,8 @@ export default function Product() {
     console.log(productData?._id);
 
     const img=productData?.images 
-        // console.log(img); 
+        console.log(productData?.images[0].public_id); 
+        const currentImg = productData?.images
 
    
         const [show, setShow] = useState(false);
@@ -62,20 +66,19 @@ export default function Product() {
         const handleCloseUpdateImage=()=>{setShowUpdateImages(false)}
         const handleShowUpdateImage=()=>{setShowUpdateImages(true)}
     
-const toastex=()=>{
-  toast.success("hello")
-}
+
 
   return (
 
 <><div><Toaster/></div>
+
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>UPDATE PRODUCT</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
-            <UpdateProduct pid={pid}/>
+            <UpdateProduct productData={productData} pid={pid}/>
 
         </Modal.Body>
       </Modal>
@@ -98,7 +101,7 @@ const toastex=()=>{
           <Modal.Title>UPDATE PRODUCT IMAGES</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <UpdateImages pid={pid} />
+            <UpdateImages pid={pid} currentImg={currentImg}/>
 
         </Modal.Body>
       </Modal>
@@ -111,13 +114,13 @@ const toastex=()=>{
     
 
     {/* <Card.Img variant="dark" src={img} /> */}
-    <Carousel slide={false}>
+    <Carousel  slide={false}>
 {productData?.images.map((img)=>{
   return(
  
-   <Carousel.Item>
+   <Carousel.Item  >
      
-     <img
+     <img style={{height:'500px'}}
        className="d-block w-100"
        src={img.url}
      
@@ -146,7 +149,7 @@ const toastex=()=>{
       {"   "}
       <Button variant="primary" onClick={handleShowUpdateImage} >UPDATE IMAGES</Button>
 
-      <Button variant="primary" onClick={toastex} >UPDATE IMAGES</Button>
+      
 
     </Card.Body>
   </Card></div>

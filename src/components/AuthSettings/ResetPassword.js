@@ -8,6 +8,7 @@ import axios from 'axios'
 import { securePatch, securePost } from '../../services/HTTPservices';
 import NavigationBar from '../NavigationBar';
 import { Routes, Route, useParams } from 'react-router-dom';
+import { toast ,Toaster } from 'react-hot-toast'
 
 
 export default function ResetPassword() {
@@ -35,9 +36,12 @@ export default function ResetPassword() {
     securePost(Url,data)
       .then((response) => {
       console.log(response);
+      toast.success("PASSWORD RESET SUCCESS")
+
       navigate("/my-profile")
   }).catch((error) => {
       console.log(error);
+      toast.error(error.response.data.message)
   })
 
   
@@ -48,6 +52,7 @@ export default function ResetPassword() {
 
 return (
   <div>
+    <div><Toaster/></div>
     
       <form  onSubmit={handleSubmit(onSubmit)} className='text-center d-grid text-light  ' id='form-log' >
         

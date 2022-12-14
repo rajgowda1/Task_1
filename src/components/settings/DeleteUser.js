@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { deleteFun } from '../../services/HTTPservices';
+import { toast ,Toaster } from 'react-hot-toast';
 
 
 function DeleteUser(delId) {
@@ -15,11 +16,13 @@ console.log(deleteUser);
       .then((response)=>{
         console.log(response);
         console.log("user deleted ")
+        toast.success("USER DELETED")
         window.location.reload();
        
           })
       .catch((error)=>{
         console.log(error);
+        toast.error(error.response.data.message)
       });
       
 
@@ -28,26 +31,21 @@ console.log(deleteUser);
 
 
   return (
-    <div className='deleteContainer'> 
-   
-    
+  <div className='deleteContainer'> 
+    <div><Toaster/></div>
 
-        <div className="card text-white bg-dark " >
-  <div className="card-header">DELETE USER</div>
-  <div className="card-body">
-  <img className='image'
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZTWhT_VCIRHy7zaEqGgQeH0THZfahCIwf6fX45pSrYuJXw7f3xQV1-n5YkvAYbiapGWU&usqp=CAU"
-      alt="new"
-      />
+    <div className="card text-white bg-dark " >
+    <div className="card-header">DELETE USER</div>
+    <div className="card-body">
+    <img className='image'
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZTWhT_VCIRHy7zaEqGgQeH0THZfahCIwf6fX45pSrYuJXw7f3xQV1-n5YkvAYbiapGWU&usqp=CAU"
+        alt="new"
+        />
     <h3>are you sure you <br/>want to DELETE ???</h3>
- 
-        <button onClick={logout}
+    <button onClick={logout}
         className='btn btn-danger'>YES</button>
-        
-
-        
-  </div>
-</div>
+    </div>
+    </div>
   </div>
   )
 }

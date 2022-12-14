@@ -8,6 +8,7 @@ import axios from 'axios'
 import { securePatch } from '../../services/HTTPservices';
 import NavigationBar from '../NavigationBar';
 import {post} from '../../services/HTTPservices'
+import { toast ,Toaster } from 'react-hot-toast'
 
 export default function SendVerifyEmail() 
 {
@@ -28,9 +29,11 @@ export default function SendVerifyEmail()
         })
          .then((res)=>{
           console.log(res)
+          toast.success("VERIFICATION SENT")
          })
          .catch((err)=>{
           console.log(err)
+          toast.error(err.response.data.message)
          })
          console.log("after");  
     }
@@ -40,7 +43,7 @@ export default function SendVerifyEmail()
 
 return (
   <div>
-    
+    <div><Toaster/></div>
     <button className='btn btn-dark btn-lg btn-block  mt-2 ' onClick={sendEmail} type='submit'>SEND VERIFY EMAIL</button>
          
     

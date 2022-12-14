@@ -1,13 +1,15 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { securePatch } from '../services/HTTPservices';
+import { toast ,Toaster } from 'react-hot-toast'
 
 export default function UpdateProduct(pid) {
     const {
         register,
         handleSubmit,
         formState: { errors },
-      } = useForm();    
+      } = useForm();   
+      console.log(pid); 
       
       const onSubmit = (data) => {
         console.log(data,pid.pid);
@@ -18,15 +20,18 @@ export default function UpdateProduct(pid) {
             securePatch(url,data)  
             .then((res)=>{
                 console.log(res);
+                toast.success("PRODUCT UPDATED SUCCESSFULLY")
                 window.location.reload();
             })
             .catch((err)=>{
                 console.log(err);
+                toast.error(err.response.data.message)
             })}
 
   return (
    
     <div>
+      <div><Toaster /></div>
     <form onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100' id='form-log'>
       <div className="form-control">
         <label>NAME</label>
@@ -34,7 +39,7 @@ export default function UpdateProduct(pid) {
           type="text"
           name="name"
           className="form-control"
-          placeholder='name'
+          defaultValue={pid?.productData.name}
           {...register("name", {
             required: true
           })}
@@ -42,11 +47,12 @@ export default function UpdateProduct(pid) {
       </div>
       <div className="form-control">
         <label>DESCRIPTION</label>
-        <input
+        <textarea
           type="text"
           name="description"
+         defaultValue={pid?.productData.description}
           className="form-control"
-          placeholder='description'
+          
           {...register("description", {
             required: true
           })
@@ -58,7 +64,8 @@ export default function UpdateProduct(pid) {
         <input
           type="number"
           name="price"
-          placeholder='price'
+          // placeholder={pid?.productData.price}
+          defaultValue={pid?.productData.price}          
           className="form-control"
           {...register("price", {
             required: true
@@ -66,7 +73,7 @@ export default function UpdateProduct(pid) {
         />
       </div>
 
-      <div className="form-control">
+      <div >
         <label></label>
         <button className='btn btn-dark btn-lg btn-block mt-3 mb-3' type='submit'>UPDATE</button>
       </div>

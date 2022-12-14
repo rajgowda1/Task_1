@@ -7,6 +7,7 @@ import {Link ,useNavigate} from "react-router-dom"
 import axios from 'axios'
 import { securePatch } from '../../services/HTTPservices';
 import NavigationBar from '../NavigationBar';
+import { toast ,Toaster } from 'react-hot-toast'
 
 export default function UpdateUserInfo(userData) {
   const navigate=useNavigate();
@@ -24,9 +25,11 @@ export default function UpdateUserInfo(userData) {
     securePatch(userInfoUrl,data)
       .then((response) => {
       console.log(response);
+      toast.success("USER UPDATED")
       window.location.reload();
   }).catch((error) => {
       console.log(error);
+      toast.error(error.response.data.message)
   })
 
 
@@ -37,7 +40,7 @@ export default function UpdateUserInfo(userData) {
 
 
 return (
-  <div>
+  <div><div><Toaster/></div>
   
       <form  onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100 mt-1 ' id='form-log' >
         

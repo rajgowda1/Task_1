@@ -8,6 +8,7 @@ import { post } from '../services/HTTPservices'
 import { setToken } from '../services/TokenServices'
 import Alert from 'react-bootstrap/Alert';
 import SocialLogin from './AuthSettings/SocialLogin'
+import { toast ,Toaster } from 'react-hot-toast';
 
 
 function Login({setAuth}) {
@@ -32,13 +33,14 @@ function Login({setAuth}) {
             (response.data.token && setAuth(response.data.token))
 
             
-            
+            toast.success("LOGIN SUCCESFUL")
             navigate("/my-profile")
             
         })
         .catch((error)=>
         {
             console.log(error)
+            toast.error(error.response.data.message)
         }
        )
     }
@@ -60,6 +62,7 @@ function Login({setAuth}) {
 
     return(
     <div>
+        <div><Toaster/></div>
 
         <form  onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100 mt-5 ' id='form-log' >
             <h1 className='text-light'>LOG IN</h1>

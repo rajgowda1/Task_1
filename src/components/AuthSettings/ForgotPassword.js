@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form'
 import{useState , useEffect} from 'react'
 import {Link ,useNavigate} from "react-router-dom"
 import axios from 'axios'
-
+import { toast ,Toaster } from 'react-hot-toast'
 import { post } from '../../services/HTTPservices'
 import { setToken } from '../../services/TokenServices'
 
@@ -26,6 +26,7 @@ function ForgotPassword() {
    
        .then((response)=>
         {   console.log(response)   
+            toast.success("RESET LINK SENT TO MAIL")
             
             // setToken(response.data.token)
             
@@ -36,6 +37,7 @@ function ForgotPassword() {
         .catch((error)=>
         {
             console.log(error)
+            toast.error(error.response.data.message)
         }
        )
     }
@@ -57,7 +59,7 @@ function ForgotPassword() {
 
 
     return(
-    <div>
+    <div><div><Toaster/></div>
 
         <form  onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100 mt-5 ' id='form-log' >
             <h1 className='text-light'>FORGOT PASSWORD</h1>

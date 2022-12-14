@@ -6,6 +6,7 @@ import { useNavigate , Link } from 'react-router-dom';
 import axios from 'axios'
 import { securePost } from '../../services/HTTPservices';
 import NavigationBar from '../NavigationBar';
+import { toast ,Toaster } from 'react-hot-toast';
 
 function CreateUser() {
   
@@ -33,13 +34,14 @@ const onSubmit=(data)=>{
 
     .then((response) => {
         console.log(response);
-        
+        toast.success("USER CREATED")
         navigate('/my-profile')
         
 
     })
     .catch((error) => {
         console.log(error);
+        toast.error(error.response.data.message)
     })
     }
     
@@ -47,7 +49,7 @@ const onSubmit=(data)=>{
     return (<>
         
     <div>
-    
+    <div><Toaster/></div>
 
         <form  onSubmit={handleSubmit(onSubmit)}  className='text-center d-grid h-100 mt- ' id="form-log">
           

@@ -110,3 +110,12 @@ margin-top: 7%;}
     margin:auto;
     
 }
+.deleteProductList{
+    
+    height: 120px;
+    border: 3px bold red;
+    overflow: scroll;
+}
+.outerDeleteProduct{
+    border: 3px  bold blue;
+    }

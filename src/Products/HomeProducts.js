@@ -13,9 +13,17 @@ import { secureGet } from '../services/HTTPservices';
 import Product from './Product';
 import { useNavigate } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
+import { useForm } from 'react-hook-form';
+import { getToken } from '../services/TokenServices';
+
+
+
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+
 
 function HomeProducts() {
-    
+    const token=getToken();
     const [productsData,setProductsData]=useState()
     const navigate=useNavigate()
    
@@ -24,7 +32,21 @@ function HomeProducts() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true); 
 
+    const [showFilter, setShowFilter] = useState(false);
+    const handleCloseFilter = () => setShowFilter(false);
+    const handleShowFilter = () => setShowFilter(true); 
 
+    const [currentPage,setCurrentPage]=useState(1)
+
+    const [realData,setRealData]=useState()
+
+    const pageInc=()=>{
+      setCurrentPage(currentPage + 1)
+    }
+  
+    const pageDec=()=>{
+      setCurrentPage(currentPage-1)
+    }
 
     const Addproducts = () => {
       console.log("clicked");
@@ -47,30 +69,111 @@ function HomeProducts() {
             console.log(err);
         })
         
-    },[])    
+    },[])   
+       
+    useEffect(()=>{
+      onSubmit(realData);
+    },[currentPage])
+
+    const {register,handleSubmit,reset,formState:{errors}}=useForm();
+    const onSubmit = (data) =>{
+      console.log(data);
+      setRealData(data)
+
+      const name =(data?.name ? `&name=${data?.name}` : '')
+      const limit =(data?.limit ? `&limit=${data?.limit}` : '')
+      const sortBy =(data?.sortBy ? `&sortBy=${data?.sortBy}` : '')
+      const page =`&page=${currentPage}`
+      const queryParameter=`${name}${limit}${sortBy}${page}`
+
+
+
+      axios.get(`https://shop-api.ngminds.com/products?${queryParameter}`,
+      {
+        headers:
+        { Authorization: `Bearer ${token}` }
+      })
+      .then((response)=>
+      {
+        console.log(response);
+        setProductsData(response.data.results)
+
+        handleCloseFilter()
+       
+        // console.log(response.data.page);
+       })
+      .catch((error)=>
+      {
+        console.log(error);
+      })
+
+
+
+    }
 
   return (
 
 
     <div className="productsDi"> 
 
-<Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title className="text-center">ADD</Modal.Title>
         </Modal.Header>
         <Modal.Body><AddProducts/></Modal.Body>
        
       </Modal>
 
-<Navbar bg="dark" expand="lg">
+      <Modal show={showFilter} onHide={handleCloseFilter}>
+        <Modal.Header closeButton>
+          <Modal.Title>FILTER</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><div> <form bg="primary" className='text-center d-grid   ' id='form-log' onSubmit={handleSubmit(onSubmit)}>
+NAME
+    <input style={{width: "70%"}} id='listForm'
+      placeholder='name'
+      type="text"
+      {...register("name")}
+    />
+LIMIT
+    <input  style={{width: "70%"}} id='listForm'
+      placeholder='limit'
+      type="number"
+      {...register("limit")}
+    />
+
+    
+    <br></br>
+    <label>SORT BY</label>
+    <select  style={{width: "20%"}} className="form-select" id='select' aria-label="Default select example" {...register("sortBy")}>
+        <option value="price">price</option>
+        <option value="name">name</option>
+
+
+      
+    </select>
+
+
+    
+    <button className='btn btn-dark btn-lg btn-block mt-1' type='submit'>FILTER</button>
+
+</form></div></Modal.Body>
+       
+      </Modal>
+
+    <Navbar bg="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#home"  id="navbarScrollingDropdown">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={Addproducts}  id="navbarScrollingDropdown" >ADD PRODUCTS</Nav.Link>
+            <Nav.Link onClick={Addproducts}  id="navbarScrollingDropdown" >	 🥾 ADD PRODUCTS</Nav.Link>
 
-            <Nav.Link href="/my-profile" id="navbarScrollingDropdown">🏠HOME</Nav.Link>
+            <Nav.Link href="/my-profile" id="navbarScrollingDropdown">🏠 HOME</Nav.Link>
+
+
+ <Nav.Link onClick={handleShowFilter} id="navbarScrollingDropdown">🔁 FILTER</Nav.Link>
+            
 
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item  href="#action/3.1">Action</NavDropdown.Item>
@@ -131,6 +234,23 @@ function HomeProducts() {
 
 
 </div> 
+<br></br>
+<div className="d-flex justify-content-evenly mb-5">
+    
+    <ButtonToolbar aria-label="Toolbar with button groups">
+      <ButtonGroup className="me-2" aria-label="First group">
+      {(currentPage>1 ? <Button onClick={pageDec}>PREV</Button> : <></>)}
+      </ButtonGroup>
+      <ButtonGroup className="me-2" aria-label="Second group">
+        <Button>{currentPage}</Button> 
+      </ButtonGroup>
+      <ButtonGroup aria-label="Third group">
+        <Button onClick={pageInc}>NEXT</Button>
+
+      </ButtonGroup>
+    </ButtonToolbar>
+
+    </div>
 </div>
   )
 }

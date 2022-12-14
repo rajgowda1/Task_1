@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import {Link ,useNavigate, useSearchParams} from "react-router-dom"
 import { post } from '../../services/HTTPservices';
-
+import { toast ,Toaster } from 'react-hot-toast'
 
 
 
@@ -22,14 +22,19 @@ function VerifyEmail() {
     post(url)
     .then((response)=>
     {console.log(response)})
+    toast.success("VERIFICATION SUCCESSFUL")
+
     .catch((error)=>{
       console.log(error);
+      toast.error(error.response.data.message)
     })
 
 
     }
-  return (
+  return (<>
+    <div><Toaster/></div>
     <div> <button className='btn btn-dark btn-lg btn-block  mt-2' onClick={verify} type='submit'>VERIFY EMAIL</button></div>
+    </>
   )
 }
 
