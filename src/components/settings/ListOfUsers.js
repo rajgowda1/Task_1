@@ -1,12 +1,11 @@
 import React from 'react'
-import NavigationBar from '../NavigationBar';
+import NavigationBar from  '../../BasicFunctionalities/NavigationBar';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import { getToken } from '../../services/TokenServices';
 import { useState , useEffect } from 'react';
 import  { useForm } from 'react-hook-form'
 
-import { Paginations } from '../../Pagination/Paginations';
 import Form from 'react-bootstrap/Form';
 import * as Icon from 'react-bootstrap-icons';
 import UpdateUserInfo from "../settings/UpdateUserInfo"

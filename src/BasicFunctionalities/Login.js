@@ -7,7 +7,7 @@ import axios from 'axios'
 import { post } from '../services/HTTPservices'
 import { setToken } from '../services/TokenServices'
 import Alert from 'react-bootstrap/Alert';
-import SocialLogin from './AuthSettings/SocialLogin'
+import SocialLogin from '../components/AuthSettings/SocialLogin'
 import { toast ,Toaster } from 'react-hot-toast';
 
 
@@ -19,7 +19,6 @@ function Login({setAuth}) {
     
     const onSubmit=(data)=>{
         
-
         data.captcha=captchaToken;
       console.log(data)
       post(loginUrl,data)
@@ -34,7 +33,7 @@ function Login({setAuth}) {
 
             
             toast.success("LOGIN SUCCESFUL")
-            navigate("/my-profile")
+            navigate("/seller/my-profile")
             
         })
         .catch((error)=>
@@ -93,10 +92,11 @@ function Login({setAuth}) {
 
             <button className='btn btn-dark btn-lg btn-block mt-3 mb-3' type='submit'>LOG IN</button>
            
-            <Link  className='text-light' to='/'>Sign Up</Link> <Link  className='text-light' to='/auth/forgot-password'>Forgot Password ?</Link>
+            <Link  className='text-light' to='/seller/register'>Sign Up</Link> <Link  className='text-light' to='/seller/auth/forgot-password'>Forgot Password ?</Link>
 
+            <SocialLogin />
         </form>
-        <SocialLogin />
+        
     </div>
     )
 }

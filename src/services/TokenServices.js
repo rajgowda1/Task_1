@@ -27,3 +27,10 @@ export function remToken(){
     )
 }
 
+export function remCustomerToken(){
+
+  return (
+      localStorage.removeItem("customer-token")
+            
+  )
+}

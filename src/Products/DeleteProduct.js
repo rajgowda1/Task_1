@@ -16,7 +16,7 @@ deleteFun(url)
 .then((res)=>{
     console.log(res);
     toast.success("PRODUCT DELETED SUCCESSFULLY")
-    navigate("/products")
+    navigate("/seller/products")
 })
 .catch((err)=>{
     console.log(err);

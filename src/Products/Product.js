@@ -9,6 +9,7 @@ import DeleteProduct from './DeleteProduct';
 import UpdateImages from './UpdateImages';
 import Carousel from 'react-bootstrap/Carousel';
 import toast, { Toaster } from 'react-hot-toast';
+import NavigationProducts from './NavigationProducts';
 
 
 
@@ -71,7 +72,7 @@ export default function Product() {
   return (
 
 <><div><Toaster/></div>
-
+<NavigationProducts/>
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>UPDATE PRODUCT</Modal.Title>

@@ -44,7 +44,7 @@ const logout=()=>{
   // setAuth=null;
   remToken()
   setAuth(null)
-  navigate("/auth/login");
+  navigate("/seller/auth/login");
 }   
 
   

@@ -5,7 +5,7 @@ import { useNavigate , Link } from 'react-router-dom';
 
 import axios from 'axios'
 import { securePost } from '../../services/HTTPservices';
-import NavigationBar from '../NavigationBar';
+import NavigationBar from  '../../BasicFunctionalities/NavigationBar';
 import { toast ,Toaster } from 'react-hot-toast';
 
 function CreateUser() {
@@ -35,7 +35,7 @@ const onSubmit=(data)=>{
     .then((response) => {
         console.log(response);
         toast.success("USER CREATED")
-        navigate('/my-profile')
+        navigate('/seller/my-profile')
         
 
     })

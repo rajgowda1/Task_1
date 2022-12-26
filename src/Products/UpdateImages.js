@@ -18,7 +18,7 @@ function UpdateImages(pid) {
 
     const formDataDelete=new FormData()
 
-    const [deleteArr,setDeleteArr]= useState([])  
+    const [ deleteArr,setDeleteArr]= useState([])  
 
     const tok =getToken
     const token = `Bearer ${tok}`

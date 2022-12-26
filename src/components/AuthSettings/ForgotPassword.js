@@ -80,7 +80,7 @@ function ForgotPassword() {
             <input type='checkbox' onClick={reCaptchaToken} /> <label> I am not a ROBOT</label>
 
             <button className='btn btn-dark btn-lg btn-block mt-3 mb-3' type='submit'>submit</button>
-            <Link to="/auth/login" className='text-light'>Existing User ? LOGIN</Link>
+            <Link to="/seller/auth/login" className='text-light'>Existing User ? LOGIN</Link>
           
         </form>
     </div>

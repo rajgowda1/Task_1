@@ -6,7 +6,7 @@ import{useState , useEffect} from 'react'
 import {Link ,useNavigate, useSearchParams} from "react-router-dom"
 import axios from 'axios'
 import { securePatch, securePost } from '../../services/HTTPservices';
-import NavigationBar from '../NavigationBar';
+import NavigationBar from  '../../BasicFunctionalities/NavigationBar';
 import { Routes, Route, useParams } from 'react-router-dom';
 import { toast ,Toaster } from 'react-hot-toast'
 
@@ -38,7 +38,7 @@ export default function ResetPassword() {
       console.log(response);
       toast.success("PASSWORD RESET SUCCESS")
 
-      navigate("/my-profile")
+      navigate("/seller/my-profile")
   }).catch((error) => {
       console.log(error);
       toast.error(error.response.data.message)

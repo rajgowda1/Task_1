@@ -28,7 +28,7 @@ const onSubmit=(data)=>{
         // console.log(response.data.token)
         // // const res=response.data.token;
         toast.success("REGISTRATION SUCCESSFUL")
-        (response.data.token && navigate("/auth/login"))
+        (response.data.token && navigate("seller/auth/login"))
         
 
     },(error)=>{
@@ -107,7 +107,8 @@ const onSubmit=(data)=>{
             <button className='btn btn-dark btn-lg btn-block  mt-3' type='submit'>SIGN UP</button><br/>
            
         
-        <Link to="/auth/login" className='text-light'>Existing User ? LOGIN</Link>
+        <Link to="/seller/auth/login" className='text-light'>Existing User ? LOGIN</Link>
+   
         </form>
 
     </div>

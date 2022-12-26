@@ -1,6 +1,6 @@
 import React from 'react'
 import Accordion from 'react-bootstrap/Accordion';
-import NavigationBar from '../NavigationBar';
+import NavigationBar from '../../BasicFunctionalities/NavigationBar';
 import {DatabaseFillUp, GearFill, PersonAdd, Upload} from 'react-bootstrap-icons';
 import {post} from '../../services/HTTPservices'
 import UpdateInfo from '../settings/UpdateInfo'

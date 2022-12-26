@@ -2,7 +2,7 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import {useNavigate} from "react-router-dom"
 import { securePost } from '../../services/HTTPservices';
-import NavigationBar from '../NavigationBar';
+import NavigationBar from '../../BasicFunctionalities/NavigationBar';
 import { toast ,Toaster } from 'react-hot-toast'
 
 export default function ChangePassword() {
@@ -23,7 +23,7 @@ export default function ChangePassword() {
       .then((response) => {
       console.log(response);
       toast.success("SUCCUSSFULLY CHANGED PASSWORD")
-      navigate("/my-profile")
+      navigate("/seller/my-profile")
   }).catch((error) => {
       console.log(error);
       toast.error(error.response.data.message)

@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';  
 
 import { DatabaseFillUp, GearFill, ListStars, PersonAdd, SignDeadEnd, Trash2Fill, Upload ,Gear ,EnvelopeCheck} from 'react-bootstrap-icons';
-import SendVerifyEmail from './AuthSettings/SendVerifyEmail';
+import SendVerifyEmail from '../components/AuthSettings/SendVerifyEmail';
 const { Link } = require("react-router-dom");
 
 
@@ -42,20 +42,22 @@ const NavigationBar = () => {
         
           <Navbar.Brand href="#home" id="textLogo" >LOGO </Navbar.Brand>
           <Nav className="justify-content-end">
-            <Nav.Link href= "/my-profile" id="navbarScrollingDropdown">🏠 Home</Nav.Link>
+            <Nav.Link href= "/seller/my-profile" id="navbarScrollingDropdown">🏠 Home</Nav.Link>
 
-            <Nav.Link href= "/products" id="navbarScrollingDropdown"> Products</Nav.Link>
+            <Nav.Link href= "/seller/products" id="navbarScrollingDropdown">🛍️  Products</Nav.Link>
+
+            <Nav.Link href= "/" id="navbarScrollingDropdown">🛍️Shopping</Nav.Link>
 
 
-            <Nav.Link href= "/auth/my-profile/ListOfUsers" id="navbarScrollingDropdown">👤 USERS</Nav.Link>
+            <Nav.Link href= "/seller/auth/my-profile/ListOfUsers" id="navbarScrollingDropdown">👤 USERS</Nav.Link>
 
 
-            <Nav.Link href="/auth/my-profile/Demo" id="navbarScrollingDropdown">⚙️ Company Settings</Nav.Link> 
+            <Nav.Link href="/seller/auth/my-profile/Demo" id="navbarScrollingDropdown">⚙️ Company Settings</Nav.Link> 
             {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
             
             <NavDropdown title="🛡️ Auth Settings " id="navbarScrollingDropdown">
             
-              <NavDropdown.Item href="/auth/my-profile/ChangePassword"><Gear color='black' size={30}  />  Change Password</NavDropdown.Item>
+              <NavDropdown.Item href="/seller/auth/my-profile/ChangePassword"><Gear color='black' size={30}  />  Change Password</NavDropdown.Item>
               
               {/* <NavDropdown.Item href="/auth/my-profile/ListOfUsers">
               <ListStars color='black' size={25}  />  List of Users

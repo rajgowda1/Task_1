@@ -164,15 +164,18 @@ LIMIT
     <Navbar bg="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#home"  id="navbarScrollingDropdown">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+       
+        
+          <Nav className="justify-content-end">
+        
+            <Nav.Link href="/seller/my-profile" id="navbarScrollingDropdown">🏠 HOME</Nav.Link>
+
             <Nav.Link onClick={Addproducts}  id="navbarScrollingDropdown" >	 🥾 ADD PRODUCTS</Nav.Link>
 
-            <Nav.Link href="/my-profile" id="navbarScrollingDropdown">🏠 HOME</Nav.Link>
+            <Nav.Link href= "/" id="navbarScrollingDropdown">🛍️Shopping</Nav.Link>
 
 
- <Nav.Link onClick={handleShowFilter} id="navbarScrollingDropdown">🔁 FILTER</Nav.Link>
+ <Nav.Link onClick={handleShowFilter} id="navbarScrollingDropdown"> FILTER</Nav.Link>
             
 
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -187,7 +190,7 @@ LIMIT
               </NavDropdown.Item>
             </NavDropdown> */}
           </Nav>
-        </Navbar.Collapse>
+       
       </Container>
     </Navbar>
     <div className="row">
@@ -203,22 +206,21 @@ LIMIT
 
       {/* <Card.Img  style={{height: '18rem' }} variant="top" src={item.images[0].url} /> */}
 
-      <Carousel>
-{item.images.map((img)=>{
-  return(
+     <Carousel>
+        {item.images.map((img)=>{
 
-    <Carousel.Item style={{height: '18rem' }}  variant="top" interval={1000}>
-    <img
-      className="d-block w-100"
-      src={img.url}
-      alt="First slide"
-    />
-  </Carousel.Item>
-  )
-})}
-     
+          return(
 
-      </Carousel>
+                  <Carousel.Item style={{height: '18rem' }}  variant="top" interval={1000}>
+                      <img
+                        className="d-block w-100"
+                        src={img.url}
+                        alt="First slide"
+                      />
+                </Carousel.Item>
+                )
+        })}
+     </Carousel>
 
       <Card.Body>
         <Card.Title style={{height: '5rem' }}>{item.name}</Card.Title>
@@ -227,7 +229,7 @@ LIMIT
         <Card.Text  style={{height: '2rem' }} >
          ${item.price}
         </Card.Text>
-        <Button onClick= {()=>navigate(`/products/product?pid=${item._id}`)} variant="primary">MORE</Button>
+        <Button onClick= {()=>navigate(`/seller/products/product?pid=${item._id}`)} variant="primary">MORE</Button>
       </Card.Body>
     </Card> </div>
 )})}

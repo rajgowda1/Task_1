@@ -6,7 +6,7 @@ import{useState , useEffect} from 'react'
 import {Link ,useNavigate} from "react-router-dom"
 import axios from 'axios'
 import { securePatch } from '../../services/HTTPservices';
-import NavigationBar from '../NavigationBar';
+import NavigationBar from  '../../BasicFunctionalities/NavigationBar';
 import {post} from '../../services/HTTPservices'
 import { toast ,Toaster } from 'react-hot-toast'
 
