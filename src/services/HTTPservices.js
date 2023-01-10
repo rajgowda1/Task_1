@@ -73,7 +73,6 @@ return (
 
 axios.interceptors.request.use(
   (config) => {
-    console.log(config.url);
 
     const newToken = JSON.parse(localStorage.getItem("token"));
     const customerToken = JSON.parse(localStorage.getItem("customer-token"));
@@ -81,7 +80,6 @@ axios.interceptors.request.use(
 
     if(config.url.includes('/customers') || config.url.includes('/shop/') ) {
       if(customerToken){
-        console.log("Customer : ",customerToken)  
           config.headers = { Authorization: `Bearer ${customerToken}` };
       }
       

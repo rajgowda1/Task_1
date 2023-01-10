@@ -33,6 +33,7 @@ import ShopProduct from './Shopping/ShopProduct';
 import ShopSignUp from './Shopping/ShopSignUp';
 import ShopSignIn from './Shopping/ShopSignIn';
 import CustomerProfile from './Shopping/CustomerProfile';
+import Cart from './Shopping/Cart';
 // toast.configure()
 
 function App() {  
@@ -46,29 +47,17 @@ function App() {
   return (
     <div >
 
-  <BrowserRouter>
-      
+  <BrowserRouter>    
     <Routes>
-
         <Route path='/'>
-
               <Route path='' element={<Shopping />}/>
-
               <Route path='shopProduct' element={<ShopProduct />}/>
-
               <Route path='shop/auth/register' element={<ShopSignUp />}/>
               <Route path='shop/auth/login' element={<ShopSignIn />}/>
-
               <Route path='shop/customers/update-profile' element={<CustomerProfile />}/>
+              <Route path='shop/cart' element={<Cart />}/>
 
-              
-
-        </Route>
-
-        
-        
-        
-        
+        </Route>  
     <Route path='seller'>
 
         
@@ -77,13 +66,11 @@ function App() {
         <Route  path = "register" element={<Registration/> }></Route>
         <Route  path = "auth/login" element={<Login setAuth={setAuth}/> }> </Route>
         <Route  path = "auth/forgot-password" element={<ForgotPassword /> }> </Route>
-
-        <Route  path = "auth/reset-password" element={<ResetPassword /> }> </Route>
-        
+        <Route  path = "auth/reset-password" element={<ResetPassword /> }> </Route>    
         </Route>
         
      
-        <Route element={<ProtectedRoutes auth={auth} />}> 
+      <Route element={<ProtectedRoutes auth={auth} />}> 
         <Route  path = "my-profile" element={<MyProfile setAuth={setAuth} />}> </Route>
         <Route  path = "auth/my-profile/UpdateInfo" element={<UpdateInfo /> }> </Route>
         <Route  path = "auth/my-profile/ListOfUsers" element={<ListOfUsers /> }> </Route>
@@ -91,20 +78,11 @@ function App() {
         {/* <Route  path = "/auth/my-profile/UpdateUserInfo" element={<UpdateUserInfo /> }> </Route>
         <Route  path = "/auth/my-profile/UpdateUserRole" element={<UpdateUserRole /> }> </Route> */}
         {/* <Route  path = "/auth/my-profile/DeleteUser" element={<DeleteUser /> }> </Route> */}
-
-        <Route  path = "auth/my-profile/UpdateUserRole" element={<UpdateUserRole /> }> </Route>
-
-
-
-        <Route  path = "auth/my-profile/Demo" element={<Demo /> }> </Route>
-
-
-        <Route  path = "products" element={<HomeProducts /> }> </Route>
-        <Route  path = "products/product" element={<Product /> }> </Route>
-        
-       
-        </Route>
-
+       <Route  path = "auth/my-profile/UpdateUserRole" element={<UpdateUserRole /> }> </Route>
+       <Route  path = "auth/my-profile/Demo" element={<Demo /> }> </Route>
+       <Route  path = "products" element={<HomeProducts /> }> </Route>
+       <Route  path = "products/product" element={<Product /> }> </Route>
+      </Route>
     </Route>
     </Routes>
   </BrowserRouter>
@@ -115,51 +93,3 @@ function App() {
 
 export default App;
 
-
-
-{/* <div >
-
-<BrowserRouter>
-
-<Routes>
-  
-<Route element={<Public auth={auth} />}>
-
-  <Route exact path = "/" element={<Registration/> }></Route>
-  <Route exact path = "/auth/login" element={<Login setAuth={setAuth}/> }> </Route>
-  <Route exact path = "/auth/forgot-password" element={<ForgotPassword /> }> </Route>
-
-  <Route exact path = "/auth/reset-password" element={<ResetPassword /> }> </Route>
-  
-
-
-
-  </Route>
-  
-
-  <Route element={<ProtectedRoutes auth={auth} />}>
- 
-   <Route exact path = "/my-profile" element={<MyProfile setAuth={setAuth} />}> </Route>
-
-  <Route exact path = "/auth/my-profile/UpdateInfo" element={<UpdateInfo /> }> </Route>
-  <Route exact path = "/auth/my-profile/ListOfUsers" element={<ListOfUsers /> }> </Route>
-  <Route exact path = "/auth/my-profile/ChangePassword" element={<ChangePassword /> }> </Route>
- 
-
-  <Route exact path = "/auth/my-profile/UpdateUserRole" element={<UpdateUserRole /> }> </Route>
-
-
-
-  <Route exact path = "/auth/my-profile/Demo" element={<Demo /> }> </Route>
-
-
-  <Route exact path = "/products" element={<HomeProducts /> }> </Route>
-  <Route exact path = "/products/product" element={<Product /> }> </Route>
-  
- 
-  </Route>
-
-  </Routes>
-</BrowserRouter>
-
-</div> */}
