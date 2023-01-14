@@ -128,7 +128,8 @@ function HomeProducts() {
         <Modal.Header closeButton>
           <Modal.Title>FILTER</Modal.Title>
         </Modal.Header>
-        <Modal.Body><div> <form bg="primary" className='text-center d-grid   ' id='form-log' onSubmit={handleSubmit(onSubmit)}>
+        <Modal.Body><div> 
+          <form bg="primary" className='text-center d-grid   ' id='form-log' onSubmit={handleSubmit(onSubmit)}>
 NAME
     <input style={{width: "70%"}} id='listForm'
       placeholder='name'

@@ -6,7 +6,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import {DatabaseFillUp,DoorClosedFill,DoorOpenFill,GearFill,HouseAddFill,Person,PersonAdd,PersonCircle,PersonFill,PersonSquare,ShopWindow,Trash2Fill,Upload,Cart4,
+import {
+  DatabaseFillUp, DoorClosedFill, DoorOpenFill, GearFill, HouseAddFill, Person, PersonAdd, PersonCircle, PersonFill, PersonSquare, ShopWindow, Trash2Fill, Upload, Cart4,
 } from "react-bootstrap-icons";
 import { remCustomerToken } from "../services/TokenServices";
 import Carousel from "react-bootstrap/Carousel";
@@ -18,6 +19,7 @@ import { secureGet } from "../services/HTTPservices";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, removeItem } from "../Shopping/Redux/Actions/index";
+import SingleBuy from "./SingleBuy";
 
 function Shopping() {
   const myState = useSelector((state) => state.CartReducer);
@@ -29,17 +31,22 @@ function Shopping() {
   const [loggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem("customer-token")) || null
   );
-
+  const [addedCart, setAddedCart] = useState(false)
   const navigate = useNavigate();
 
   const [showFilter, setShowFilter] = useState(false);
   const handleCloseFilter = () => setShowFilter(false);
   const handleShowFilter = () => setShowFilter(true);
 
+  const [showSingleBuy, setShowSingleBuy] = useState(false);
+  const handleCloseSingleBuy = () => setShowSingleBuy(false);
+  const handleShowSingleBuy = () => setShowSingleBuy(true);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [maxPage, setMaxPage] = useState();
 
   const [realData, setRealData] = useState();
+
 
   const pageInc = () => {
     setCurrentPage(currentPage + 1);
@@ -102,8 +109,22 @@ function Shopping() {
     console.log("loggedOut");
   };
 
+  const onAddToCart = (item) => {
+    item.quantity = 1
+    item.subTotal = item.price * item.quantity
+    dispatch(addItem(item))
+
+  }
   return (
     <>
+    <Modal show={showSingleBuy} onHide={handleCloseSingleBuy} >
+    <Modal.Header closeButton>
+        <Modal.Title className="text-center"> BUY ITEM </Modal.Title>
+    </Modal.Header>
+    <Modal.Body> <SingleBuy /> </Modal.Body>
+
+</Modal>
+
       <Modal show={showFilter} onHide={handleCloseFilter}>
         <Modal.Header closeButton>
           <Modal.Title>FILTER</Modal.Title>
@@ -169,14 +190,15 @@ function Shopping() {
               </Nav.Link>
               {/* <Nav.Link href="#pricing" id= "navbarScrollingDropdown">Pricing</Nav.Link> */}
             </Nav>
+            <Nav >
+              <Nav.Link as={Link} to={"shop/cart"} id="navbarScrollingDropdown">
+                <Cart4 size={40} />
+              </Nav.Link>
+            </Nav>
             <Nav>
               {loggedIn ? (
                 <>
-                  <Nav style={{border:"2px solid red"}}>
-                    <Nav.Link as={Link} to={"shop/cart"} id="navbarScrollingDropdown">
-                      <Cart4 size={40} />
-                    </Nav.Link>
-                  </Nav>
+
                   <NavDropdown
                     title={<PersonFill color="white" size={45} />}
                     id="navbarScrollingDropdown"
@@ -188,8 +210,8 @@ function Shopping() {
                       <DoorOpenFill color="black" size={25} />
                       LOGOUT
                     </NavDropdown.Item>
-                    {/* <NavDropdown.Item href="#action/3.3" >Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
+                    <NavDropdown.Item href="shop/orders/details" >ORDERS</NavDropdown.Item>
+                    {/*<NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4" >
                     Separated link
                   </NavDropdown.Item> */}
@@ -251,12 +273,33 @@ function Shopping() {
                 </Card.Text>
 
                 <div className="d-flex justify-content-center">
-                  <Button
-                    variant="primary"
-                    onClick={() => dispatch(addItem(item))}
-                  >
-                    Add to Cart
-                  </Button>
+                  {
+                  myState.items?.find((fItem) => fItem._id === item._id)
+                      ?
+                      <>
+                        <Button 
+                          variant="warning"
+                          onClick={() => navigate("shop/cart")} > Go to Cart
+                        </Button>
+                      </>
+                      :
+                      <>
+                        <Button
+                          variant="primary"
+                          onClick={() => onAddToCart(item)}
+                        >
+                          Add to Cart
+                        </Button></>
+
+                  }
+                 <Button
+                          className="ms-1"
+                          variant="primary"
+                          onClick={handleShowSingleBuy}
+                        >
+                         Buy Item
+                        </Button>
+
                 </div>
               </Card.Body>
             </Card>
@@ -285,7 +328,7 @@ function Shopping() {
           </ButtonToolbar>
         </div>
       </div>
-    
+
     </>
   );
 }

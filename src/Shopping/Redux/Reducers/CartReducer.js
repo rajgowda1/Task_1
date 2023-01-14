@@ -1,8 +1,6 @@
 // Reducer
 const initialState = {
-    items: [],
-    subtotal: 0,
-    grandTotal: 0
+    items: []
   };
   
   export default function CartReducer(state = initialState, action) {
@@ -10,37 +8,38 @@ const initialState = {
       case "ADD_ITEM":
         return {
           ...state,
-          items: [...state.items, action.item],
-          grandTotal: state.grandTotal + action.item.price
+          items: [...state.items, action.item]
         };
       case "REMOVE_ITEM":
         return {
           ...state,
-          items: state.items.filter(item => item.id !== action.itemId),
-          grandTotal: state.grandTotal - action.item.price * action.item.quantity
+          items: state.items.filter(item => item._id !== action.itemId),
         };
       case "INCREASE_QUANTITY":
-        return {
-          ...state,
-          items: state.items.map(item => {
-            if (item.id === action.itemId) {
-              return { ...item, quantity: item.quantity + 1 };
-            }
-            return item;
-          }),
-          grandTotal: state.grandTotal + action.item.price
-        };
+
+      const updatedArr=state.items.map((item)=>{
+        if (item._id === action.item._id) {
+          item.quantity +=1
+          item.subTotal=item.quantity * item.price
+      }
+      return item
+      })
+        return {items:updatedArr}
+
       case "DECREASE_QUANTITY":
-        return {
-          ...state,
-          items: state.items.map(item => {
-            if (item.id === action.itemId) {
-              return { ...item, quantity: item.quantity - 1 };
-            }
-            return item;
-          }),
-          grandTotal: state.grandTotal - action.item.price
-        };
+        
+      const updatedArray=state.items.map((item)=>{
+        if (item._id === action.item._id) {
+          item.quantity -=1
+          item.subTotal=item.quantity * item.price
+      }
+      return item
+      })
+        return {items:updatedArray}
+
+      case "CLEAR_CART" : 
+        return initialState      
+
       default:
         return state;
     }

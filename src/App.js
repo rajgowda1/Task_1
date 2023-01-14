@@ -1,10 +1,10 @@
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
-import {BrowserRouter ,Routes,Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Registration from "./BasicFunctionalities/Registration"
 import Login from "./BasicFunctionalities/Login"
 import MyProfile from "./BasicFunctionalities/MyProfile"
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import ProtectedRoutes from './BasicFunctionalities/Protected';
 import axios from "axios";
 import HTTPcalls from './services/HTTPservices'
@@ -24,7 +24,7 @@ import ForgotPassword from './components/AuthSettings/ForgotPassword';
 import ResetPassword from './components/AuthSettings/ResetPassword';
 import VerifyEmail from './components/AuthSettings/VerifyEmail';
 
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeProducts from './Products/HomeProducts';
 import Product from './Products/Product';
@@ -34,59 +34,75 @@ import ShopSignUp from './Shopping/ShopSignUp';
 import ShopSignIn from './Shopping/ShopSignIn';
 import CustomerProfile from './Shopping/CustomerProfile';
 import Cart from './Shopping/Cart';
+import Orders from "./Shopping/Orders"
+import Payment from './Shopping/Payment';
+import OrderDetails from './Shopping/OrderHistory';
+import OrderHistory from './Shopping/OrderHistory';
+import SingleBuy from './Shopping/SingleBuy';
 // toast.configure()
 
-function App() {  
+function App() {
 
-  const[auth,setAuth]=useState(JSON.parse(localStorage.getItem("token"))||null)
+  const [auth, setAuth] = useState(JSON.parse(localStorage.getItem("token")) || null)
 
-  useEffect(()=>{
-    setAuth(JSON.parse(localStorage.getItem("token")))},[])   
+  useEffect(() => {
+    setAuth(JSON.parse(localStorage.getItem("token")))
+  }, [])
 
 
   return (
     <div >
 
-  <BrowserRouter>    
-    <Routes>
-        <Route path='/'>
-              <Route path='' element={<Shopping />}/>
-              <Route path='shopProduct' element={<ShopProduct />}/>
-              <Route path='shop/auth/register' element={<ShopSignUp />}/>
-              <Route path='shop/auth/login' element={<ShopSignIn />}/>
-              <Route path='shop/customers/update-profile' element={<CustomerProfile />}/>
-              <Route path='shop/cart' element={<Cart />}/>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/'>
+            <Route path='' element={<Shopping />} />
+            <Route path='shopProduct' element={<ShopProduct />} />
+            <Route path='shop/auth/register' element={<ShopSignUp />} />
+            <Route path='shop/auth/login' element={<ShopSignIn />} />
+            <Route path='shop/customers/update-profile' element={<CustomerProfile />} />
+            <Route path='shop/cart' element={<Cart />} />
 
-        </Route>  
-    <Route path='seller'>
+            <Route path='shop/orders' element={<Orders />} />
+            <Route path='shop/orders/confirm' element={<Payment />} />
 
-        
-      <Route element={<Public auth={auth} />}>
+            <Route path='shop/orders/details' element={<OrderHistory />} />
+            <Route path='shop/orders/single' element={<SingleBuy />} />
 
-        <Route  path = "register" element={<Registration/> }></Route>
-        <Route  path = "auth/login" element={<Login setAuth={setAuth}/> }> </Route>
-        <Route  path = "auth/forgot-password" element={<ForgotPassword /> }> </Route>
-        <Route  path = "auth/reset-password" element={<ResetPassword /> }> </Route>    
-        </Route>
-        
-     
-      <Route element={<ProtectedRoutes auth={auth} />}> 
-        <Route  path = "my-profile" element={<MyProfile setAuth={setAuth} />}> </Route>
-        <Route  path = "auth/my-profile/UpdateInfo" element={<UpdateInfo /> }> </Route>
-        <Route  path = "auth/my-profile/ListOfUsers" element={<ListOfUsers /> }> </Route>
-        <Route  path = "auth/my-profile/ChangePassword" element={<ChangePassword /> }> </Route>
-        {/* <Route  path = "/auth/my-profile/UpdateUserInfo" element={<UpdateUserInfo /> }> </Route>
+
+
+
+
+          </Route>
+          <Route path='seller'>
+
+
+            <Route element={<Public auth={auth} />}>
+
+              <Route path="register" element={<Registration />}></Route>
+              <Route path="auth/login" element={<Login setAuth={setAuth} />}> </Route>
+              <Route path="auth/forgot-password" element={<ForgotPassword />}> </Route>
+              <Route path="auth/reset-password" element={<ResetPassword />}> </Route>
+            </Route>
+
+
+            <Route element={<ProtectedRoutes auth={auth} />}>
+              <Route path="my-profile" element={<MyProfile setAuth={setAuth} />}> </Route>
+              <Route path="auth/my-profile/UpdateInfo" element={<UpdateInfo />}> </Route>
+              <Route path="auth/my-profile/ListOfUsers" element={<ListOfUsers />}> </Route>
+              <Route path="auth/my-profile/ChangePassword" element={<ChangePassword />}> </Route>
+              {/* <Route  path = "/auth/my-profile/UpdateUserInfo" element={<UpdateUserInfo /> }> </Route>
         <Route  path = "/auth/my-profile/UpdateUserRole" element={<UpdateUserRole /> }> </Route> */}
-        {/* <Route  path = "/auth/my-profile/DeleteUser" element={<DeleteUser /> }> </Route> */}
-       <Route  path = "auth/my-profile/UpdateUserRole" element={<UpdateUserRole /> }> </Route>
-       <Route  path = "auth/my-profile/Demo" element={<Demo /> }> </Route>
-       <Route  path = "products" element={<HomeProducts /> }> </Route>
-       <Route  path = "products/product" element={<Product /> }> </Route>
-      </Route>
-    </Route>
-    </Routes>
-  </BrowserRouter>
-      
+              {/* <Route  path = "/auth/my-profile/DeleteUser" element={<DeleteUser /> }> </Route> */}
+              <Route path="auth/my-profile/UpdateUserRole" element={<UpdateUserRole />}> </Route>
+              <Route path="auth/my-profile/Demo" element={<Demo />}> </Route>
+              <Route path="products" element={<HomeProducts />}> </Route>
+              <Route path="products/product" element={<Product />}> </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }

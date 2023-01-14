@@ -8,18 +8,21 @@
 
 // Action creators
 export function addItem(item) {
-  return { type: "ADD_ITEM", item };
+  return { type: "ADD_ITEM",item };
 }
 
 export function removeItem(itemId) {
   return { type: "REMOVE_ITEM", itemId };
 }
 
-export function increaseQuantity(itemId) {
-  return { type: "INCREASE_QUANTITY", itemId };
+export function increaseQuantity(item) {
+  return { type: "INCREASE_QUANTITY", item };
 }
 
-export function decreaseQuantity(itemId) {
-  return { type: "DECREASE_QUANTITY", itemId };
+export function decreaseQuantity(item) {
+  return { type: "DECREASE_QUANTITY", item };
 }
 
+export function clearCart() {
+  return {type: "CLEAR_CART" }
+}
