@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-
 export function TokenServices() {
   return (
     <></>
@@ -19,7 +17,6 @@ export function setToken(token) {
         localStorage.setItem('token',JSON.stringify(token))
     )
 }
-
 
 export function remToken(){
     return (

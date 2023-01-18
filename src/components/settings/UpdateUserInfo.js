@@ -1,87 +1,76 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import {useForm} from 'react-hook-form'
-import{useState , useEffect} from 'react'
-import {Link ,useNavigate} from "react-router-dom"
+import { useForm } from 'react-hook-form'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { securePatch } from '../../services/HTTPservices';
-import NavigationBar from  '../../BasicFunctionalities/NavigationBar';
-import { toast ,Toaster } from 'react-hot-toast'
+import NavigationBar from '../../BasicFunctionalities/NavigationBar';
+import { toast, Toaster } from 'react-hot-toast'
 
 export default function UpdateUserInfo(userData) {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const uid = userData.userInfoId._id
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const userInfoUrl = `/users/${uid}`
 
- const uid=userData.userInfoId._id
-
- 
-
-  const {register,handleSubmit,formState:{errors}}=useForm();
-  const userInfoUrl=`/users/${uid}`
-  
-  const onSubmit=(data)=>{
-      console.log(uid)
-      console.log(userInfoUrl)
-    securePatch(userInfoUrl,data)
+  const onSubmit = (data) => {
+    console.log(uid)
+    console.log(userInfoUrl)
+    securePatch(userInfoUrl, data)
       .then((response) => {
-      console.log(response);
-      toast.success("USER UPDATED")
-      window.location.reload();
-  }).catch((error) => {
-      console.log(error);
-      toast.error(error.response.data.message)
-  })
+        console.log(response);
+        toast.success("USER UPDATED")
+        window.location.reload();
+      }).catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.message)
+      })
+  }
+  return (
+    <div><div><Toaster /></div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100 mt-1 ' id='form-log' >
 
 
-  
-   }
-
-  
-
-
-return (
-  <div><div><Toaster/></div>
-  
-      <form  onSubmit={handleSubmit(onSubmit)} className='text-center d-grid h-100 mt-1 ' id='form-log' >
-        
-
-          <div className="form-group mt-1">
+        <div className="form-group mt-1">
           <label>EMAIL</label>
-          <input 
-              type="email"
-              placeholder="Email"
-              className="form-control"
-              {...register("email",{required:true,pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/})}
-              />
-          </div>
-          {errors.email && <p className="text-warning">please check email</p>}
+          <input
+            type="email"
+            placeholder="Email"
+            className="form-control"
+            {...register("email", { required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
+          />
+        </div>
+        {errors.email && <p className="text-warning">please check email</p>}
 
-          <div className="form-group  mt-1"> <label>PASSWORD</label>
-            <input 
-                type="password"
-                placeholder="Password"
-                className="form-control"
-                {...register("password",{required:true})}
-                />
-            </div>
-            {errors.password && <p className="text-warning">please check password</p>}
-          
-          <div className="form-group mt-1"> <label>NAME</label>
-          <input 
-              type="text"
-              placeholder="Enter name"
-              className="form-control"
-              {...register("name",{required:true})}
-              />
-          </div>
-          {errors.name && <p className="text-warning">please check name</p>}
+        <div className="form-group  mt-1"> <label>PASSWORD</label>
+          <input
+            type="password"
+            placeholder="Password"
+            className="form-control"
+            {...register("password", { required: true })}
+          />
+        </div>
+        {errors.password && <p className="text-warning">please check password</p>}
 
-          
+        <div className="form-group mt-1"> <label>NAME</label>
+          <input
+            type="text"
+            placeholder="Enter name"
+            className="form-control"
+            {...register("name", { required: true })}
+          />
+        </div>
+        {errors.name && <p className="text-warning">please check name</p>}
 
 
-          <button className='btn btn-dark btn-lg btn-block mt-1 mb-1' type='submit'>SUBMIT</button>
-         
+
+
+        <button className='btn btn-dark btn-lg btn-block mt-1 mb-1' type='submit'>SUBMIT</button>
+
       </form>
-  </div>
-)
+    </div>
+  )
 }

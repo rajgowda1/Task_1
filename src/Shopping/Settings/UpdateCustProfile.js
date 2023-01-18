@@ -1,14 +1,9 @@
 import React from 'react'
 import { toast ,Toaster } from 'react-hot-toast';
-
 import {useForm} from 'react-hook-form'
 import { securePatch } from '../../services/HTTPservices';
 
-
-
 function UpdateCustProfile() {
-
-
     const {register,handleSubmit,formState:{errors}}=useForm();
     const url="/customers/update-profile"
 
@@ -26,8 +21,6 @@ function UpdateCustProfile() {
             console.log(err);
             toast.error(err.response.data.message)
         })
-
-
     }
 
   return (

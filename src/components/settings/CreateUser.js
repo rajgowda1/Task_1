@@ -1,9 +1,6 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
-import{useState , useEffect} from 'react'
 import { useNavigate , Link } from 'react-router-dom';
-
-import axios from 'axios'
 import { securePost } from '../../services/HTTPservices';
 import NavigationBar from  '../../BasicFunctionalities/NavigationBar';
 import { toast ,Toaster } from 'react-hot-toast';
@@ -22,30 +19,19 @@ const createUserUrl="/users"
 
 const onSubmit=(data)=>{
         
-     console.log(data)
-     
-    
+     console.log(data)    
     securePost(createUserUrl,data)
-    // axios.post('https://ngminds.herokuapp.com/users',data,
-    //     {headers:{
-    //         Authorization:token
-    //     }}   
-    // )
 
     .then((response) => {
         console.log(response);
         toast.success("USER CREATED")
         navigate('/seller/my-profile')
-        
-
     })
     .catch((error) => {
         console.log(error);
         toast.error(error.response.data.message)
     })
     }
-    
-
     return (<>
         
     <div>
@@ -98,9 +84,6 @@ const onSubmit=(data)=>{
             {errors.companyName && <p className="text-warning"> please check Company Name</p>}
 
             <button className='btn btn-dark btn-lg btn-block  mt-1' type='submit'>ADD</button>
-           
-        
-        
         </form>
 
     </div>

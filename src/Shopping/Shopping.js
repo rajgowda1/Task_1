@@ -6,9 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import {
-  DatabaseFillUp, DoorClosedFill, DoorOpenFill, GearFill, HouseAddFill, Person, PersonAdd, PersonCircle, PersonFill, PersonSquare, ShopWindow, Trash2Fill, Upload, Cart4,
-} from "react-bootstrap-icons";
+import { DatabaseFillUp, DoorClosedFill, DoorOpenFill, GearFill, HouseAddFill, Person, PersonAdd, PersonCircle, PersonFill, PersonSquare, ShopWindow, Trash2Fill, Upload, Cart4, Clipboard2CheckFill,} from "react-bootstrap-icons";
 import { remCustomerToken } from "../services/TokenServices";
 import Carousel from "react-bootstrap/Carousel";
 import { useForm } from "react-hook-form";
@@ -16,10 +14,11 @@ import Modal from "react-bootstrap/Modal";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import { secureGet } from "../services/HTTPservices";
-
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, removeItem } from "../Shopping/Redux/Actions/index";
 import SingleBuy from "./SingleBuy";
+import Badge from 'react-bootstrap/Badge';
+import { toast, Toaster } from "react-hot-toast";
 
 function Shopping() {
   const myState = useSelector((state) => state.CartReducer);
@@ -27,12 +26,12 @@ function Shopping() {
   const dispatch = useDispatch();
   const [data, setData] = useState();
   const url = "/shop/products";
-
   const [loggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem("customer-token")) || null
   );
   const [addedCart, setAddedCart] = useState(false)
   const navigate = useNavigate();
+  const [curSingleBuy, setCurSingleBuy] = useState()
 
   const [showFilter, setShowFilter] = useState(false);
   const handleCloseFilter = () => setShowFilter(false);
@@ -93,9 +92,7 @@ function Shopping() {
   useEffect(() => {
     secureGet(url)
       .then((res) => {
-        // console.log(res);
         setData(res.data.results);
-
         setMaxPage(res.data.totalPages);
       })
       .catch((err) => {
@@ -113,17 +110,24 @@ function Shopping() {
     item.quantity = 1
     item.subTotal = item.price * item.quantity
     dispatch(addItem(item))
-
+    toast.success("item added to cart" )
+  }
+  const openSingleBuy = (currentBuy) => {
+    console.log(currentBuy, "singlebuy");
+    setCurSingleBuy(currentBuy)
+    console.log(curSingleBuy, "cur buy");
+    handleShowSingleBuy();
   }
   return (
     <>
-    <Modal show={showSingleBuy} onHide={handleCloseSingleBuy} >
-    <Modal.Header closeButton>
-        <Modal.Title className="text-center"> BUY ITEM </Modal.Title>
-    </Modal.Header>
-    <Modal.Body> <SingleBuy /> </Modal.Body>
+    <div><Toaster/></div>
+      <Modal size="lg" show={showSingleBuy} onHide={handleCloseSingleBuy} >
+        <Modal.Header closeButton>
+          <Modal.Title className="text-center"> BUY ITEM </Modal.Title>
+        </Modal.Header>
+        <Modal.Body> <SingleBuy curSingleBuy={curSingleBuy} /> </Modal.Body>
 
-</Modal>
+      </Modal>
 
       <Modal show={showFilter} onHide={handleCloseFilter}>
         <Modal.Header closeButton>
@@ -193,12 +197,13 @@ function Shopping() {
             <Nav >
               <Nav.Link as={Link} to={"shop/cart"} id="navbarScrollingDropdown">
                 <Cart4 size={40} />
+                <Badge bg="danger" >{myState.items.length}</Badge>
+               
               </Nav.Link>
             </Nav>
             <Nav>
               {loggedIn ? (
                 <>
-
                   <NavDropdown
                     title={<PersonFill color="white" size={45} />}
                     id="navbarScrollingDropdown"
@@ -210,11 +215,7 @@ function Shopping() {
                       <DoorOpenFill color="black" size={25} />
                       LOGOUT
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="shop/orders/details" >ORDERS</NavDropdown.Item>
-                    {/*<NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4" >
-                    Separated link
-                  </NavDropdown.Item> */}
+                    <NavDropdown.Item href="shop/orders/details" > <Clipboard2CheckFill color="black" size={25} /> ORDERS</NavDropdown.Item>
                   </NavDropdown>
                 </>
               ) : (
@@ -244,11 +245,11 @@ function Shopping() {
       <div className="row" id="shoppingCards">
         {data?.map((item, i) => {
           return (
-            <Card className="cards mt-4 bg-light" style={{ width: "20rem" }}>
+            <Card className="cards mt-4 bg-light" style={{ width: "20rem" }} key={i}>
               <Carousel>
-                {item.images.map((img) => {
+                {item.images.map((img,i) => {
                   return (
-                    <Carousel.Item>
+                    <Carousel.Item key={i}>
                       <Card.Img
                         variant="top"
                         className="mt-2"
@@ -274,10 +275,10 @@ function Shopping() {
 
                 <div className="d-flex justify-content-center">
                   {
-                  myState.items?.find((fItem) => fItem._id === item._id)
+                    myState.items?.find((fItem) => fItem._id === item._id)
                       ?
                       <>
-                        <Button 
+                        <Button
                           variant="warning"
                           onClick={() => navigate("shop/cart")} > Go to Cart
                         </Button>
@@ -292,13 +293,13 @@ function Shopping() {
                         </Button></>
 
                   }
-                 <Button
-                          className="ms-1"
-                          variant="primary"
-                          onClick={handleShowSingleBuy}
-                        >
-                         Buy Item
-                        </Button>
+                  <Button
+                    className="ms-1"
+                    variant="primary"
+                    onClick={() => openSingleBuy(item)}
+                  >
+                    Buy Item
+                  </Button>
 
                 </div>
               </Card.Body>

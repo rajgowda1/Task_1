@@ -13,9 +13,7 @@ export default function UpdateProduct(pid) {
       
       const onSubmit = (data) => {
         console.log(data,pid.pid);
-    
         const url = `/products/${pid.pid}`
-        
         console.log(url);
             securePatch(url,data)  
             .then((res)=>{
@@ -27,7 +25,6 @@ export default function UpdateProduct(pid) {
                 console.log(err);
                 toast.error(err.response.data.message)
             })}
-
   return (
    
     <div>
@@ -64,7 +61,6 @@ export default function UpdateProduct(pid) {
         <input
           type="number"
           name="price"
-          // placeholder={pid?.productData.price}
           defaultValue={pid?.productData.price}          
           className="form-control"
           {...register("price", {

@@ -5,21 +5,15 @@ import { getToken } from '../services/TokenServices';
 import { toast, Toast,Toaster } from 'react-hot-toast';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-import { Vr } from 'react-bootstrap-icons';
-
 
 function UpdateImages(pid) {
 
     const {register,handleSubmit,formState:{errors}}=useForm();
     const url=`https://shop-api.ngminds.com/products/images/${pid.pid}`
     console.log(pid);
-    
     const formData=new FormData()
-
     const formDataDelete=new FormData()
-
     const [ deleteArr,setDeleteArr]= useState([])  
-
     const tok =getToken
     const token = `Bearer ${tok}`
 
@@ -39,7 +33,6 @@ function UpdateImages(pid) {
         .then((res)=>{
             console.log(res);
             window.location.reload(); 
-
             toast.success("UPDATED IMAGE SUCCESSFUL")
         })
         .catch((err)=>{
@@ -75,8 +68,6 @@ function UpdateImages(pid) {
             toast.error(err.response.data.message)
         })
     }
-
-
   return (
   <>
         <div> <Toaster/> </div>
@@ -109,8 +100,6 @@ function UpdateImages(pid) {
                     console.log(deleteArr)
                    
                 }
-                // console.log(deleteArr);
-                // console.log(item?.url);
                 return(<>
                 <div className='d-flex align-items-start'>
                     <img src={item?.url} style={{width:'100px'}}></img>

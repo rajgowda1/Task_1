@@ -1,12 +1,7 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import {useForm} from 'react-hook-form'
-import{useState , useEffect} from 'react'
 import {Link ,useNavigate} from "react-router-dom"
-import axios from 'axios'
 import { securePatch } from '../../services/HTTPservices';
-import NavigationBar from  '../../BasicFunctionalities/NavigationBar';
 import { toast ,Toaster } from 'react-hot-toast'
 
 function UpdateInfo() {
@@ -22,8 +17,7 @@ function UpdateInfo() {
         console.log(data)
 
         securePatch(UpdateInfoUrl,data)
-    //     axios.patch('https://ngminds.herokuapp.com/users/org',data,{ headers: {  Authorization:token}, }
-    // )
+
     .then((response) => {
         console.log(response);
         toast.success("UPDATED SUCCESSFULLY")
@@ -32,14 +26,8 @@ function UpdateInfo() {
     .catch((error) => {
         console.log(error);
         toast.error(error.response.data.message)
-    })
-
-    
+    }) 
      }
-
-    
-
-
   return (
     <div>
       

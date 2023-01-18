@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
-import { Arrow90degDown, Arrow90degUp, ArrowRight, Trash, Trash2, Trash2Fill } from 'react-bootstrap-icons'
 import { secureGet, securePatch } from '../services/HTTPservices'
 import Button from 'react-bootstrap/Button';
 import { Modal } from 'react-bootstrap';
@@ -41,8 +40,6 @@ function OrderHistory() {
         .catch((err)=>{
             console.log(err);
         })
-
-
     }
 
     return (<>
@@ -83,11 +80,7 @@ function OrderHistory() {
                                         handleShow(); setCurId(data._id)
                                     }}>Details</Button>
                                     <Button variant="danger" onClick={()=>cancelOrder(data._id)}>Cancel</Button>
-
-
                                 </td>
-
-
                                 <td>{data?.status}</td>
                             </tr>)
                         })

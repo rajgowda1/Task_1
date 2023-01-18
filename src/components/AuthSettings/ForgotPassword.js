@@ -4,8 +4,7 @@ import{useState , useEffect} from 'react'
 import {Link ,useNavigate} from "react-router-dom"
 import axios from 'axios'
 import { toast ,Toaster } from 'react-hot-toast'
-import { post } from '../../services/HTTPservices'
-import { setToken } from '../../services/TokenServices'
+
 
 
 function ForgotPassword() {
@@ -26,13 +25,7 @@ function ForgotPassword() {
    
        .then((response)=>
         {   console.log(response)   
-            toast.success("RESET LINK SENT TO MAIL")
-            
-            // setToken(response.data.token)
-            
-            // (response.data.token && setAuth(response.data.token))
-            // navigate("/my-profile")
-            
+            toast.success("RESET LINK SENT TO MAIL")            
         })
         .catch((error)=>
         {
@@ -49,7 +42,6 @@ function ForgotPassword() {
         window.grecaptcha.ready(function() {
             window.grecaptcha.execute('6LevmbQZAAAAAMSCjcpJmuCr4eIgmjxEI7bvbmRI', {action: 'submit'})
             .then(function(token) {
-                // Add your logic to submit to your backend server here.
                 console.log(token)
                 setCaptchaToken(token)
             });

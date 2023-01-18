@@ -25,8 +25,6 @@ const onSubmit=(data)=>{
 
     .then((response)=>{
         console.log(response);
-        // console.log(response.data.token)
-        // // const res=response.data.token;
         toast.success("REGISTRATION SUCCESSFUL")
         (response.data.token && navigate("seller/auth/login"))
         
@@ -42,7 +40,6 @@ const onSubmit=(data)=>{
         window.grecaptcha.ready(function() {
         window.grecaptcha.execute('6LevmbQZAAAAAMSCjcpJmuCr4eIgmjxEI7bvbmRI', {action: 'submit'})
         .then(function(token) {
-            // Add your logic to submit to your backend server here.
         setCaptcha(token)
         console.log(captcha);
   });

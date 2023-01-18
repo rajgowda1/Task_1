@@ -16,25 +16,17 @@ function Login({setAuth}) {
     const token = ''
     const {register,handleSubmit,formState:{errors}}=useForm();
     const loginUrl = `/auth/login`
-    
     const onSubmit=(data)=>{
-        
         data.captcha=captchaToken;
       console.log(data)
-      post(loginUrl,data)
 
-   
+      post(loginUrl,data)
        .then((response)=>
         {   console.log(response)   
-            
             setToken(response.data.token)
-            
             (response.data.token && setAuth(response.data.token))
-
-            
             toast.success("LOGIN SUCCESFUL")
             navigate("/seller/my-profile")
-            
         })
         .catch((error)=>
         {
@@ -51,7 +43,6 @@ function Login({setAuth}) {
         window.grecaptcha.ready(function() {
             window.grecaptcha.execute('6LevmbQZAAAAAMSCjcpJmuCr4eIgmjxEI7bvbmRI', {action: 'submit'})
             .then(function(token) {
-                // Add your logic to submit to your backend server here.
                 console.log(token)
                 setCaptchaToken(token)
             });

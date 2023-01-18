@@ -33,22 +33,6 @@ function Demo() {
           <CreateUser />
         </Accordion.Body>
       </Accordion.Item>
-
-      {/* <Accordion.Item eventKey="3" className='authHeader'>
-        <Accordion.Header><Upload color='black' size={25}  />  Update User Info</Accordion.Header>
-        <Accordion.Body className='authSetting'>
-         
-          <UpdateUserInfo />
-        </Accordion.Body>
-      </Accordion.Item>
-
-      <Accordion.Item eventKey="4" className='authHeader'>
-        <Accordion.Header><GearFill color='black' size={25}  />  Update User Role</Accordion.Header>
-        <Accordion.Body className='authSetting'>
-         
-          <UpdateUserRole />
-        </Accordion.Body>
-      </Accordion.Item> */}
     </Accordion>
 
     

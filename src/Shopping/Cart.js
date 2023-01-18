@@ -2,15 +2,12 @@ import React, { useState } from 'react'
 import Shopping from './Shopping'
 import ShopNavigationBar from './ShopNavigationBar'
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
-
 import { useSelector, useDispatch } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import { increaseQuantity, decreaseQuantity, removeItem, grandTotal } from './Redux/Actions';
 import { Trash2Fill } from 'react-bootstrap-icons';
 import { Link, useNavigate } from 'react-router-dom';
-
-
-
+import { toast, Toaster } from 'react-hot-toast';
 
 function Cart() {
   const dispatch = useDispatch()
@@ -21,26 +18,20 @@ function Cart() {
   const [loggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem("customer-token") || null)
   )
-
-  // (myState.items.length == 0 && navigate("/"))
-
-
-
   let total = 0
   const subtotals = myState.items.map((item) => {
     total += item.subTotal;
     return total;
 
   });
-  // console.log();
-  // dispatch(grandTotal(total))
 
   return (
     <div>
+      <div><Toaster/></div>
       {myState.items.length == 0 ? 
-      <div className='text-center justify-content-center'>
+      <div className='text-center text-white justify-content-center'>
         <h1>No items in Cart</h1>  
-      <Button variant='dark' onClick={()=>navigate("/")}>Continue Shopping</Button>
+      <Button variant='warning' onClick={()=>navigate("/")}>Continue Shopping</Button>
       </div> : <>
         <ShopNavigationBar />
 
@@ -72,7 +63,8 @@ function Cart() {
 
                         <div className='d-flex justify-content-center align-items-center  ' style={{ width: '190px', height: '130px' }} >
                           {item.quantity === 1 ?
-                            <Button variant="danger" onClick={() => dispatch(removeItem(item._id))}><Trash2Fill /></Button>
+                            <Button variant="danger" onClick={() => {dispatch(removeItem(item._id))
+                                                                      toast.error("item removed from cart")                               }}><Trash2Fill /></Button>
                             :
 
                             <Button onClick={() => dispatch(decreaseQuantity(item))}>-</Button>

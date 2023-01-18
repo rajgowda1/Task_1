@@ -9,19 +9,9 @@ const token = 'Bearer ' + tok
 export function secureGet(url, token) {
   return (
     axios.get(`${API_HOST_URL}${url}`
-
-      // {
-      //   headers:
-      //    { 
-      //     Authorization: token
-      //    }}
-
     )
-
   )
 }
-
-
 
 export function post(url, data) {
   console.log(data)
@@ -33,34 +23,21 @@ export function post(url, data) {
 export function securePost(url, data) {
   return (
     axios.post(`${API_HOST_URL}${url}`, data
-      // ,{
-      //   headers:
-      //    { 
-      //     Authorization:token
-      //    }}
     ))
 
 }
 export function securePatch(url, data) {
   return (
     axios.patch(`${API_HOST_URL}${url}`, data
-      // ,{ headers: {  Authorization:token}}
     )
   )
 }
 
 export function deleteFun(url) {
-
   return (
-
-    axios
-      .delete(`${API_HOST_URL}${url}`
-        //  , {headers: { Authorization:token}}
+    axios.delete(`${API_HOST_URL}${url}`
       )
-
-
   )
-
 }
 
 export function put(url,data) {
@@ -69,14 +46,11 @@ return (
 )
 }
 
-
-
 axios.interceptors.request.use(
   (config) => {
 
     const newToken = JSON.parse(localStorage.getItem("token"));
     const customerToken = JSON.parse(localStorage.getItem("customer-token"));
-    // console.log("SEller", newToken)
 
     if(config.url.includes('/customers') || config.url.includes('/shop/') ) {
       if(customerToken){
