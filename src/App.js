@@ -6,11 +6,7 @@ import Login from "./BasicFunctionalities/Login"
 import MyProfile from "./BasicFunctionalities/MyProfile"
 import { useState, useEffect } from 'react'
 import ProtectedRoutes from './BasicFunctionalities/Protected';
-import axios from "axios";
-import HTTPcalls from './services/HTTPservices'
 import Public from './BasicFunctionalities/Public'
-
-import NavigationBar from './BasicFunctionalities/NavigationBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UpdateInfo from './components/settings/UpdateInfo';
 import ListOfUsers from './components/settings/ListOfUsers';
@@ -23,13 +19,10 @@ import ChangePassword from './components/AuthSettings/ChangePassword';
 import ForgotPassword from './components/AuthSettings/ForgotPassword';
 import ResetPassword from './components/AuthSettings/ResetPassword';
 import VerifyEmail from './components/AuthSettings/VerifyEmail';
-
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeProducts from './Products/HomeProducts';
 import Product from './Products/Product';
 import Shopping from './Shopping/Shopping';
-
 import ShopSignUp from './Shopping/ShopSignUp';
 import ShopSignIn from './Shopping/ShopSignIn';
 import CustomerProfile from './Shopping/CustomerProfile';
@@ -41,7 +34,6 @@ import OrderHistory from './Shopping/OrderHistory';
 import SingleBuy from './Shopping/SingleBuy';
 import ShopProtected from './Shopping/Settings/RoutesProtection/ShopProtected';
 import ShopPublic from './Shopping/Settings/RoutesProtection/ShopPublic';
-// toast.configure()
 
 function App() {
 
@@ -83,10 +75,6 @@ function App() {
               <Route path='shop/orders/single' element={<SingleBuy />} />
               </Route>
 
-
-
-
-
             </Route>
             <Route path='seller'>
 
@@ -105,9 +93,6 @@ function App() {
                 <Route path="auth/my-profile/UpdateInfo" element={<UpdateInfo />}> </Route>
                 <Route path="auth/my-profile/ListOfUsers" element={<ListOfUsers />}> </Route>
                 <Route path="auth/my-profile/ChangePassword" element={<ChangePassword />}> </Route>
-                {/* <Route  path = "/auth/my-profile/UpdateUserInfo" element={<UpdateUserInfo /> }> </Route>
-        <Route  path = "/auth/my-profile/UpdateUserRole" element={<UpdateUserRole /> }> </Route> */}
-                {/* <Route  path = "/auth/my-profile/DeleteUser" element={<DeleteUser /> }> </Route> */}
                 <Route path="auth/my-profile/UpdateUserRole" element={<UpdateUserRole />}> </Route>
                 <Route path="auth/my-profile/Demo" element={<Demo />}> </Route>
                 <Route path="products" element={<HomeProducts />}> </Route>
