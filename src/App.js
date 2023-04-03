@@ -34,6 +34,7 @@ import OrderHistory from './Shopping/OrderHistory';
 import SingleBuy from './Shopping/SingleBuy';
 import ShopProtected from './Shopping/Settings/RoutesProtection/ShopProtected';
 import ShopPublic from './Shopping/Settings/RoutesProtection/ShopPublic';
+import SellerOrders from './components/settings/SellerOrderMangement/SellerOrders';
 
 function App() {
 
@@ -43,11 +44,11 @@ function App() {
     setAuth(JSON.parse(localStorage.getItem("token")))
   }, [])
 
-  const [shopAuth, setShopAuth] = useState(JSON.parse(localStorage.getItem("customer-token")) || null)
+  // const [shopAuth, setShopAuth] = useState(JSON.parse(localStorage.getItem("customer-token")) || null)
 
-  useEffect(()=>{
-    setShopAuth(JSON.parse(localStorage.getItem("customer-token")))
-  })
+  // useEffect(()=>{
+  //   setShopAuth(JSON.parse(localStorage.getItem("customer-token")))
+  // },[])
 
 
   return (
@@ -59,14 +60,14 @@ function App() {
             <Route path='shop/cart' element={<Cart />} />
               <Route path='' element={<Shopping />} />
 
-            <Route element={<ShopPublic shopAuth={shopAuth} />}>
+            <Route element={<ShopPublic  />}>
 
               <Route path='shop/auth/register' element={<ShopSignUp />} />
               <Route path='shop/auth/login' element={<ShopSignIn />} />
 
             </Route>
 
-            <Route element={<ShopProtected shopAuth={shopAuth} />}>
+            <Route element={<ShopProtected  />}>
 
               <Route path='shop/customers/update-profile' element={<CustomerProfile />} />
               <Route path='shop/orders' element={<Orders />} />
@@ -97,6 +98,9 @@ function App() {
                 <Route path="auth/my-profile/Demo" element={<Demo />}> </Route>
                 <Route path="products" element={<HomeProducts />}> </Route>
                 <Route path="products/product" element={<Product />}> </Route>
+                <Route path="orders" element={<SellerOrders />}> </Route>
+
+
               </Route>
             </Route>
         </Routes>

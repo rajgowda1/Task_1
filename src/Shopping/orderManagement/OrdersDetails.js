@@ -6,13 +6,13 @@ import { secureGet } from '../../services/HTTPservices';
 
 function OrdersDetails(curItemId) {
   const id = curItemId.curItemId
-  const url = `/shop/orders/${id}`
+  const url = `/shop/orders/${id}?limit=${100}`
   console.log(url);
   console.log(id);
   const [data, setdata] = useState()
 
   useEffect(() => {
-    secureGet(`url?page=${4}`)
+    secureGet(url)
       .then((res) => {
         console.log(res);
         setdata(res.data)

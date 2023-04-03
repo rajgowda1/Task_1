@@ -2,7 +2,8 @@ html{
     min-height: 100%;
 }
 body{
-    background: linear-gradient(90deg, #6fdaec , #e40a9b);
+    background: linear-gradient(90deg, #A594F9 , #6247AA);
+    
     /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% ); */
 }
 .form-group{
@@ -43,7 +44,7 @@ body{
 margin-top: 7%;}
 .authSetting{
         /* color: #00DBDE; */
-    background-image: linear-gradient(90deg, #00DBDE 0%, #182099 100%);
+    background-image: linear-gradient(90deg, #4c2fdf 0%, #4800ff 100%);
  
 }
 #textLogo{
@@ -108,8 +109,16 @@ margin-top: 7%;}
       }
 .cards{
     margin:auto;
+    box-shadow: 10px 10px 20px rgba(53, 177, 226, 0.2);
+
     
 }
+.cards:hover {
+    opacity: 1;
+    transition: 0.5s;
+    transform: scale(1.03);
+    cursor: pointer;
+ }
 
 #shoppingCards{
     margin: 40px;

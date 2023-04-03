@@ -80,7 +80,7 @@ function ShopSignUp() {
                         placeholder="Name"
                         className="form-control"
                         {...register("name", { required: true, maxLength: 10 })}
-                    />
+                    />  
                 </div>
                 {errors.name && <p className="text-warning">please check name</p>}
 

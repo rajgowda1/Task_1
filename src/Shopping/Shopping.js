@@ -155,6 +155,7 @@ function Shopping() {
                 style={{ width: "70%" }}
                 id="listForm"
                 placeholder="limit"
+                defaultValue="20"
                 type="number"
                 {...register("limit")}
               />
@@ -253,7 +254,7 @@ function Shopping() {
                       <Card.Img
                         variant="top"
                         className="mt-2"
-                        style={{ height: "321px" }}
+                        style={{ height: "321px",width : "100%" }}
                         src={img.url}
                       />
                     </Carousel.Item>

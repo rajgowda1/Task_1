@@ -6,7 +6,7 @@ const API_HOST_URL = "https://shop-api.ngminds.com"
 const tok = JSON.parse(localStorage.getItem('token'))
 const token = 'Bearer ' + tok
 
-export function secureGet(url, token) {
+export function secureGet(url) {
   return (
     axios.get(`${API_HOST_URL}${url}`
     )

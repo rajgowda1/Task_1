@@ -17,10 +17,10 @@ function ShopNavigationBar() {
   const CustomerLogOut = () => {
     remCustomerToken()
     navigate('/')
-
-
   }
 
+
+   
   const [logged, setLogged] = useState(
     JSON.parse(localStorage.getItem("customer-token")) || null
   );

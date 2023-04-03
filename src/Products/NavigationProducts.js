@@ -3,11 +3,11 @@ import { Navbar , Nav, Container} from 'react-bootstrap'
 
 function NavigationProducts() {
   return (
-    <div> <Navbar bg="dark" expand="lg">
+    <div> <Navbar bg="dark" expand="lg" >
     <Container>
       <Navbar.Brand href="#home"  id="navbarScrollingDropdown">React-Bootstrap</Navbar.Brand>
 
-        <Nav className="justify-content-end">
+        <Nav >
       
           <Nav.Link href="/seller/my-profile" id="navbarScrollingDropdown">🏠 HOME</Nav.Link>
 

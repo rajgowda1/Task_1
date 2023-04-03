@@ -45,7 +45,7 @@ function UpdateInfo() {
             </div>
             {errors.email && <p className="text-warning">please check email</p>}
             
-            <div className="form-group mt-1"> <label>COMPANY     NAME</label>
+            <div className="form-group mt-1"> <label>COMPANY NAME</label>
             <input 
                 type="text"
                 placeholder="Enter name"

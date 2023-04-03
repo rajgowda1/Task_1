@@ -29,9 +29,14 @@ function Cart() {
     <div>
       <div><Toaster/></div>
       {myState.items.length == 0 ? 
-      <div className='text-center text-white justify-content-center'>
+      <div className='text-center text-white d-flex  justify-content-center align-items-center ' style={{height:"100vh"}}>
+        <div>
         <h1>No items in Cart</h1>  
       <Button variant='warning' onClick={()=>navigate("/")}>Continue Shopping</Button>
+
+        </div>
+
+
       </div> : <>
         <ShopNavigationBar />
 

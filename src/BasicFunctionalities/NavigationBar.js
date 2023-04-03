@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { Gear, EnvelopeCheck, ListTask, Table } from 'react-bootstrap-icons';
+import { Gear, EnvelopeCheck, ListTask, Table, Clipboard2CheckFill, Clipboard2Check } from 'react-bootstrap-icons';
 import SendVerifyEmail from '../components/AuthSettings/SendVerifyEmail';
 const { Link } = require("react-router-dom");
 
@@ -29,7 +29,7 @@ const NavigationBar = () => {
       </Modal>
 
       <nav style={{ textAlign: "center", marginTop: "20px" }}>
-        <Navbar bg="dark" variant="dark" fixed="top" >
+        <Navbar  bg="dark" variant="dark" fixed="top" >
           <Container>
 
 
@@ -54,7 +54,7 @@ const NavigationBar = () => {
 
                 <NavDropdown.Item onClick={handleShow}><EnvelopeCheck color='black' size={30} /> Verify Email</NavDropdown.Item>
 
-                <NavDropdown.Item ><Table color='black' size={30} /> Verify Email</NavDropdown.Item>
+                <NavDropdown.Item href='/seller/orders' ><Clipboard2Check color='black' size={30} /> Orders </NavDropdown.Item>
 
 
               </NavDropdown>
